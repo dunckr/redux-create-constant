@@ -1,0 +1,6 @@
+--require babel-register
+--require jsdom-global/register
+--recursive
+--reporter dot
+./src/**/*.js
+./test/**/*.js
