@@ -1,2 +1,5 @@
+*.log
+.cache
 dist
+lib
 node_modules
