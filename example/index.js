@@ -5,7 +5,7 @@ import thunkMiddleware from 'redux-thunk';
 import ReactDOM from 'react-dom';
 import { Provider, connect } from 'react-redux';
 
-import { App } from './containers';
+import App from './containers';
 import store from './store';
 
 ReactDOM.render(
