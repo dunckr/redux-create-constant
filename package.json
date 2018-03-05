@@ -1,6 +1,6 @@
 {
   "name": "redux-create-constant",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Redux Create Constants",
   "main": "lib/redux-create-constant.js",
   "scripts": {
