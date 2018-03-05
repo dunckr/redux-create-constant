@@ -1,6 +1,5 @@
-const { expect } = require('chai');
-
-const { createConstant, isConstantType } = require('../src');
+import { expect } from 'chai';
+import { createConstant, isConstantType } from '../src';
 
 describe('createConstant', () => {
 	describe('type and states', () => {
