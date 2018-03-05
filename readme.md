@@ -26,7 +26,9 @@ const FETCH_ITEM_ADD_ERROR = 'FETCH_ITEM_ADD_ERROR';
 Reduce boilerplate and keep your constants grouped, consistent and checkable:
 
 ```js
-const apiConstants = constantine(['API', 'SUCCESS', 'ERROR']);
+import { createConstant, isConstantType } from 'redux-create-constant';
+
+const apiConstants = createConstant(['API', 'SUCCESS', 'ERROR']);
 
 const FETCH_USERS_STATUS = apiConstants('FETCH_USERS_STATUS');
 const FETCH_ITEM_ADD = apiConstants('FETCH_ITEM_ADD');

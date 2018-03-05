@@ -1,7 +1,6 @@
 import React from 'react';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
-// import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import { Provider, connect } from 'react-redux';
 

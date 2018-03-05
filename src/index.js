@@ -1,4 +1,4 @@
-function createConstant(type, states = []) {
+export const createConstant = (type, states = []) => {
 	return (affix, getNamespace) => {
 		const namespace = `@@${type}`;
 		if (getNamespace) return namespace;
@@ -7,15 +7,10 @@ function createConstant(type, states = []) {
 			return { ...obj, [value]: state };
 		}, {});
 	};
-}
+};
 
-function isConstantType(value, constantType) {
+export const isConstantType = (value, constantType) => {
 	const namespace = constantType(undefined, true);
 	const type = value.type || value;
 	return type.substr(0, namespace.length) === namespace;
-}
-
-module.exports = {
-	createConstant,
-	isConstantType,
 };
