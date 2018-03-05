@@ -1,15 +1,16 @@
-import { isConstant } from '../src';
+import { isConstantType } from '../src';
 import { counterConstants } from './actions';
 
 export const delayMiddleware = store => next => action => {
-	console.log('in middleware....', action);
+	if (!isConstantType(action, counterConstants)) return next(action);
 
-	if (!isConstant(action, counterConstants)) return next(action);
-
-	setTimeout(() => {
-		console.log('delayed...');
-		next(action);
-	}, 5 * 1000);
+	const { delay, isToggled } = store.getState();
+	if (!isToggled) return next(action);
+	const delayed = () => next(action);
+	setTimeout(delayed, delay * 1000);
 };
 
-export default delayMiddleware;
+export const loggerMiddleware = store => next => action => {
+	console.log(JSON.stringify(action));
+	next(action);
+};

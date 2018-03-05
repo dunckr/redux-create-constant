@@ -1,9 +1,9 @@
 const { expect } = require('chai');
 
-const { createConstant, isConstant } = require('../src');
+const { createConstant, isConstantType } = require('../src');
 
 describe('createConstant', () => {
-	describe('defaults', () => {
+	describe('type and states', () => {
 		it('generates unique constants', () => {
 			const apiConstants = createConstant('API', ['REQUEST', 'SUCCESS', 'ERROR']);
 			const FETCH_USERS_STATUS = apiConstants('FETCH_USERS_STATUS');
@@ -20,9 +20,15 @@ describe('createConstant', () => {
 			});
 		});
 	});
+	describe(', getNamespace', () => {
+		it('returns the namespace', () => {
+			const apiConstants = createConstant('API', ['REQUEST', 'SUCCESS', 'ERROR']);
+			expect(apiConstants(undefined, true)).to.eql('@@API');
+		});
+	});
 });
 
-describe('isConstant', () => {
+describe('isConstantType', () => {
 	describe('object: action', () => {
 		describe('different constant type', () => {
 			it('returns false', () => {
@@ -32,7 +38,7 @@ describe('isConstant', () => {
 				const action = {
 					type: MODAL.SHOW,
 				};
-				expect(isConstant(action, apiConstant)).to.eql(false);
+				expect(isConstantType(action, apiConstant)).to.eql(false);
 			});
 		});
 		describe('same constant type', () => {
@@ -42,7 +48,7 @@ describe('isConstant', () => {
 				const action = {
 					type: MODAL.SHOW,
 				};
-				expect(isConstant(action, toggleConstant)).to.eql(true);
+				expect(isConstantType(action, toggleConstant)).to.eql(true);
 			});
 		});
 	});
@@ -53,7 +59,7 @@ describe('isConstant', () => {
 				const apiConstant = createConstant('API', ['REQUEST', 'SUCCESS', 'ERROR']);
 				const MODAL = toggleConstant('MODAL');
 				const type = MODAL.SHOW;
-				expect(isConstant(type, apiConstant)).to.eql(false);
+				expect(isConstantType(type, apiConstant)).to.eql(false);
 			});
 		});
 		describe('same constant type', () => {
@@ -61,7 +67,7 @@ describe('isConstant', () => {
 				const toggleConstant = createConstant('TOGGLE', ['SHOW', 'HIDE']);
 				const MODAL = toggleConstant('MODAL');
 				const type = MODAL.SHOW;
-				expect(isConstant(type, toggleConstant)).to.eql(true);
+				expect(isConstantType(type, toggleConstant)).to.eql(true);
 			});
 		});
 	});

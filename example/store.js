@@ -2,10 +2,10 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { connect } from 'react-redux';
 
-import { delayMiddleware } from './middlewares';
+import { loggerMiddleware, delayMiddleware } from './middlewares';
 import { counter } from './reducers';
 
-const middlewares = [delayMiddleware, thunkMiddleware];
+const middlewares = [loggerMiddleware, delayMiddleware, thunkMiddleware];
 
 export const store = createStore(
 	counter,

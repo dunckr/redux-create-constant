@@ -1,7 +1,7 @@
 function createConstant(type, states = []) {
-	return (affix, __type) => {
+	return (affix, getNamespace) => {
 		const namespace = `@@${type}`;
-		if (__type) return namespace;
+		if (getNamespace) return namespace;
 		return states.reduce((obj, value) => {
 			const state = `${namespace}/${affix}_${value}`;
 			return { ...obj, [value]: state };
@@ -9,12 +9,13 @@ function createConstant(type, states = []) {
 	};
 }
 
-function isConstant(action, constantType) {
-	const type = action.type || action;
-	return type.indexOf(constantType(undefined, true)) !== -1;
+function isConstantType(value, constantType) {
+	const namespace = constantType(undefined, true);
+	const type = value.type || value;
+	return type.substr(0, namespace.length) === namespace;
 }
 
 module.exports = {
 	createConstant,
-	isConstant,
+	isConstantType,
 };
