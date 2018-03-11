@@ -65,3 +65,43 @@ export const authMiddleware = store => next => action => {
 > [Strings are serializable, and by using Symbols you make recording and replaying harder than it needs to be](https://redux.js.org/recipes/reducing-boilerplate#actions)
 
 * Apply [middleware](https://github.com/reactjs/redux/blob/master/docs/advanced/Middleware.md) to specific types of constants easily
+
+
+## API
+
+<dl>
+<dt><a href="#createConstant">createConstant</a></dt>
+<dd><p>Create a constant type</p>
+</dd>
+<dt><a href="#isConstantType">isConstantType</a></dt>
+<dd><p>Check if action or string matches a constant type</p>
+</dd>
+</dl>
+
+<a name="createConstant"></a>
+
+## createConstant
+Create a constant type
+
+**Kind**: global constant
+
+| Param | Type |
+| --- | --- |
+| type | <code>string</code> |
+| states | <code>array</code> |
+
+<a name="isConstantType"></a>
+
+## isConstantType
+Check if action or string matches a constant type
+
+**Kind**: global constant
+
+| Param | Type |
+| --- | --- |
+| value | <code>action</code> \| <code>string</code> |
+| constantType | <code>constantType</code> |
+
+## License
+
+MIT © [Duncan Beaton](http://dunckr.com)
